@@ -14,7 +14,7 @@ class CreateRentCarsTable extends Migration
     public function up()
     {
         Schema::create('rent_cars', function (Blueprint $table) {
-            $table->unsignedBigInteger('rest_request_id');
+            $table->unsignedBigInteger('rent_id');
             $table->unsignedBigInteger('car_id')->comment('if car deleted change car_id to 99999999');
         });
     }
