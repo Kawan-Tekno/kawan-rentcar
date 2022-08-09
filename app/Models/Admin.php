@@ -30,7 +30,7 @@ class Admin extends Authenticatable
 
     public function rent()
     {
-        return $this->hasMany(Rent::class, 'admin_id', 'id');
+        return $this->hasMany(Rent::class, 'admin_role_id', 'id');
     }
 
     public function role()
