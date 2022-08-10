@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminCRUDController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CarCRUDController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +24,16 @@ Route::prefix('/v1')
 
         Route::controller(AdminCRUDController::class)
             ->prefix('/admins')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{id}', 'show');
+                Route::post('/', 'store');
+                Route::post('/{id}', 'update');
+                Route::delete('/{id}', 'destroy');
+            });
+
+        Route::controller(CarCRUDController::class)
+            ->prefix('/cars')
             ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
