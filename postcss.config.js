@@ -1,10 +1,10 @@
 module.exports = {
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.jsx",
+    ],
     plugins: {
-        content: [
-            "./resources/**/*.blade.php",
-            "./resources/**/*.js",
-            "./resources/**/*.jsx",
-        ],
         tailwindcss: {},
         autoprefixer: {},
     },
