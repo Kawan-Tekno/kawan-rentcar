@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdminCRUDController;
 use App\Http\Controllers\Api\CarCRUDController;
+use App\Http\Controllers\Api\CarTypeCRUDController;
 use App\Http\Controllers\Api\RentCRUDController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,16 @@ Route::prefix('/v1')
 
         Route::controller(CarCRUDController::class)
             ->prefix('/cars')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{id}', 'show');
+                Route::post('/', 'store');
+                Route::post('/{id}', 'update');
+                Route::delete('/{id}', 'destroy');
+            });
+
+        Route::controller(CarTypeCRUDController::class)
+            ->prefix('/car-types')
             ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
