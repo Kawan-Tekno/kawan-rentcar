@@ -15,7 +15,6 @@ class Admin extends Authenticatable
     protected $table = 'admins';
 
     protected $fillable = [
-        'admin_role_id',
         'name',
         'avatar',
         'username',
@@ -30,11 +29,6 @@ class Admin extends Authenticatable
 
     public function rent()
     {
-        return $this->hasMany(Rent::class, 'admin_role_id', 'id');
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(AdminRole::class, 'admin_role_id', 'id');
+        return $this->hasMany(Rent::class, 'admin_id', 'id');
     }
 }

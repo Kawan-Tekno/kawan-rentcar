@@ -15,7 +15,6 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('admin_role_id')->nullable();
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('username');

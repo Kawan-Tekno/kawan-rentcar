@@ -44,7 +44,6 @@ class AdminCRUDController extends Controller
         }
 
         $admin = Admin::create([
-            'admin_role_id' => null,
             'name' => $req->name,
             'avatar' => null,
             'username' => $req->username,
