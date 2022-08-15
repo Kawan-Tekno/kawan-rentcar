@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AdminCRUDController;
 use App\Http\Controllers\Api\CarCRUDController;
 use App\Http\Controllers\Api\CarTypeCRUDController;
 use App\Http\Controllers\Api\RentCRUDController;
+use App\Http\Controllers\CarAppointmentCRUDController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,12 @@ Route::prefix('/v1')
                 Route::post('/', 'store');
                 Route::post('/{id}', 'update');
                 Route::delete('/{id}', 'destroy');
+            });
+
+        Route::controller(CarAppointmentCRUDController::class)
+            ->prefix('/car-appointments')
+            ->group(function () {
+                Route::get('/{id}', 'show');
             });
 
         Route::controller(RentCRUDController::class)
