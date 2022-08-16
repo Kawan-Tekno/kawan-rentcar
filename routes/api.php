@@ -35,6 +35,7 @@ Route::prefix('/v1')
 
         Route::controller(AdminCRUDController::class)
             ->prefix('/admins')
+            ->middleware('auth:sanctum')
             ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
@@ -48,9 +49,9 @@ Route::prefix('/v1')
             ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
-                Route::post('/', 'store');
-                Route::post('/{id}', 'update');
-                Route::delete('/{id}', 'destroy');
+                Route::post('/', 'store')->middleware('auth:sanctum');
+                Route::post('/{id}', 'update')->middleware('auth:sanctum');
+                Route::delete('/{id}', 'destroy')->middleware('auth:sanctum');
             });
 
         Route::controller(CarTypeCRUDController::class)
@@ -58,9 +59,9 @@ Route::prefix('/v1')
             ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
-                Route::post('/', 'store');
-                Route::post('/{id}', 'update');
-                Route::delete('/{id}', 'destroy');
+                Route::post('/', 'store')->middleware('auth:sanctum');
+                Route::post('/{id}', 'update')->middleware('auth:sanctum');
+                Route::delete('/{id}', 'destroy')->middleware('auth:sanctum');
             });
 
         Route::controller(CarAppointmentCRUDController::class)
@@ -75,7 +76,8 @@ Route::prefix('/v1')
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
                 Route::post('/', 'store');
-                Route::delete('/{id}', 'destroy');
+                Route::delete('/{id}', 'destroy')->middleware('auth:sanctum');
             });
-        Route::post('/rents/{id}/approval', [RentActionsContoller::class, 'approval']);
+        Route::post('/rents/{id}/approval', [RentActionsContoller::class, 'approval'])
+            ->middleware('auth:sanctum');
     });
