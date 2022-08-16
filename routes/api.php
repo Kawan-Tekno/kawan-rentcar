@@ -4,7 +4,8 @@ use App\Http\Controllers\Api\AdminCRUDController;
 use App\Http\Controllers\Api\CarCRUDController;
 use App\Http\Controllers\Api\CarTypeCRUDController;
 use App\Http\Controllers\Api\RentCRUDController;
-use App\Http\Controllers\CarAppointmentCRUDController;
+use App\Http\Controllers\Api\CarAppointmentCRUDController;
+use App\Http\Controllers\Api\RentActionsContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,4 +70,5 @@ Route::prefix('/v1')
                 Route::post('/', 'store');
                 Route::delete('/{id}', 'destroy');
             });
+        Route::post('/rents/{id}/approval', [RentActionsContoller::class, 'approval']);
     });
