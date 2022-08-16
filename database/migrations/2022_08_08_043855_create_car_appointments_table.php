@@ -16,6 +16,7 @@ class CreateCarAppointmentsTable extends Migration
         Schema::create('car_appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('car_id');
+            $table->unsignedBigInteger('rent_id');
             $table->dateTime('date_start');
             $table->dateTime('date_end');
             $table->timestamps();

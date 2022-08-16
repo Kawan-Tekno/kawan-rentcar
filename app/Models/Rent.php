@@ -17,8 +17,8 @@ class Rent extends Model
         'name',
         'phone',
         'destination',
-        'start_date',
-        'end_date',
+        'date_start',
+        'date_end',
         'status',
         'fee_total'
     ];

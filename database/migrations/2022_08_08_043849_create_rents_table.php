@@ -19,8 +19,8 @@ class CreateRentsTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->text('destination');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('date_start');
+            $table->dateTime('date_end');
             $table->enum('status', ['New', 'Accept', 'Reject'])->comment('New, Accept, Reject');
             $table->integer('fee_total');
             $table->softDeletes();
