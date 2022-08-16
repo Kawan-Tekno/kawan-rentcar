@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\Api\AdminCRUDController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CarCRUDController;
+use App\Http\Controllers\Api\CarTypeCRUDController;
+use App\Http\Controllers\Api\RentCRUDController;
+use App\Http\Controllers\Api\CarAppointmentCRUDController;
+use App\Http\Controllers\Api\RentActionsContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +42,40 @@ Route::prefix('/v1')
                 Route::post('/{id}', 'update');
                 Route::delete('/{id}', 'destroy');
             });
+
+        Route::controller(CarCRUDController::class)
+            ->prefix('/cars')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{id}', 'show');
+                Route::post('/', 'store');
+                Route::post('/{id}', 'update');
+                Route::delete('/{id}', 'destroy');
+            });
+
+        Route::controller(CarTypeCRUDController::class)
+            ->prefix('/car-types')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{id}', 'show');
+                Route::post('/', 'store');
+                Route::post('/{id}', 'update');
+                Route::delete('/{id}', 'destroy');
+            });
+
+        Route::controller(CarAppointmentCRUDController::class)
+            ->prefix('/car-appointments')
+            ->group(function () {
+                Route::get('/{id}', 'show');
+            });
+
+        Route::controller(RentCRUDController::class)
+            ->prefix('/rents')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{id}', 'show');
+                Route::post('/', 'store');
+                Route::delete('/{id}', 'destroy');
+            });
+        Route::post('/rents/{id}/approval', [RentActionsContoller::class, 'approval']);
     });
