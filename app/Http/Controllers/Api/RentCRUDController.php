@@ -37,8 +37,8 @@ class RentCRUDController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'destination' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'date_start' => 'required|date',
+            'date_end' => 'required|date',
             'fee_total' => 'required|numeric',
             'car_ids' => 'required|array',
             'car_ids.*' => 'required|exists:cars,id'
@@ -56,8 +56,8 @@ class RentCRUDController extends Controller
             'name' => $req->name,
             'phone' => $req->phone,
             'destination' => $req->destination,
-            'start_date' => $req->start_date,
-            'end_date' => $req->end_date,
+            'date_start' => $req->start_date,
+            'date_end' => $req->end_date,
             'status' => 'NEW',
             'fee_total' => $req->fee_total
         ]);
