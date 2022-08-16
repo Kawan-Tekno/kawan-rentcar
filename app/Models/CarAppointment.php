@@ -13,6 +13,7 @@ class CarAppointment extends Model
 
     protected $fillable = [
         'car_id',
+        'rent_id',
         'date_start',
         'date_end',
     ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CarAppointment;
 use App\Models\Rent;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -34,9 +35,33 @@ class RentActionsContoller extends Controller
             'status' => $req->query('request')
         ]);
 
+        $this->handelCarAppointment($rent, $req->query('request'));
+
         return response()->json([
             'rent_id' => $id,
             'approval' => $req->query('request')
         ], 200);
+    }
+
+    private function handelCarAppointment(Rent $rent, string $request)
+    {
+        if ($request == 'Accept') {
+            foreach ($rent->car as $car) {
+                CarAppointment::updateOrCreate(
+                    [
+                        'car_id' => $car->id,
+                        'rent_id' => $rent->id
+                    ],
+                    [
+                        'date_start' => $rent->date_start,
+                        'date_end' => $rent->date_end,
+                    ]
+                );
+            }
+        }
+
+        if ($request == 'Reject') {
+            CarAppointment::where('rent_id', $rent->id)->delete();
+        }
     }
 }

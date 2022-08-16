@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CarAppointment;
 use App\Models\Rent;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -74,6 +75,9 @@ class RentCRUDController extends Controller
         } catch (ModelNotFoundException) {
             return response()->json(["error" => "not found"], 404);
         }
+
+        // handle car appointment
+        CarAppointment::where('rent_id', $id)->delete();
 
         $rent->delete();
 
